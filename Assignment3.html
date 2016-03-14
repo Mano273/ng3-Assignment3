@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>Assignment 3</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+	
+	<script type="text/javascript">
+
+
+		var myApp=angular.module("myModule",[]);
+		myApp.controller("myController",function($scope){
+			var employee=[
+			{name:"Taylor",employeeId:1361,Salary:37000.58},
+			{name:"Raven",employeeId:1471,Salary:79589.7658},
+			{name:"Smith",employeeId:1560,Salary:87459.87932},
+			{name:"David",employeeId:1260,Salary:78032.12345},
+			];
+			$scope.employee=employee;
+			$scope.eSort;
+		});
+	</script>
+</head>
+<body>
+<div ng-app="myModule">
+	<div ng-controller="myController">
+		
+		<h5>Sort the table by: </h5><select ng-model="eSort">
+			<option value="" selected>--Select your option--</option>
+			<option value="name">Name</option>
+			<option value="employeeId">Employee ID</option>
+			<option value="Salary">Salary</option>
+		</select>
+		<h4>The Details of the employee is:</h4>
+	
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>ID</th>
+					<th>Salary</th>
+					<th>Rounded off Salary</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="e in employee|orderBy:eSort">
+				<tr>
+					<td>{{e.employeeId}}</td>
+					<td>{{e.name|uppercase}}</td>
+					<td>{{e.Salary}}</td>
+					<td>{{e.Salary|number:2}}</td>
+				</tr>
+			</tbody>
+			
+		</table>
+		
+	</div>
+</div>
+
+</body>
+
+</html>
